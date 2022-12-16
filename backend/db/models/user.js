@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       const { id, username, email } = this; // context will be the User instance
       return { id, username, email };
     }
-    
+
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
     }
@@ -33,12 +33,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
-    static async signup({ username, email, password }) {
+    static async signup({ username, email, password, firstName, lastName }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
         username,
         email,
-        hashedPassword
+        hashedPassword,
+        firstName,
+        lastName
       });
       return await User.scope('currentUser').findByPk(user.id);
     }
@@ -76,6 +78,14 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: [60, 60]
         }
+      },
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
       }
     },
     {
