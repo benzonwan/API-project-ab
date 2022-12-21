@@ -41,117 +41,116 @@ router.post(
     // try {
       const { email, password, username, firstName, lastName } = req.body;
   
-      // const emailExists = await User.findAll({
-      //   attributes: ['email'],
-      //   where: {
-      //     email: email
-      //   }
-      // })
-
-      // const userExists = await User.findAll({
-      //   attributes: ['username'],
-      //   where: {
-      //     username: username
-      //   }
-      // })
-      // if (emailExists) {
-      //   const err = new Error("User already exists")
-      //   err.status = 403,
-      //     err.errors = { email: "User with that email already exists" }
-      //   res.json({
-      //     message: "User already exists",
-      //     statusCode: 403,
-      //     errors: {
-      //       email: "User with that email already exists",
-      //     },
-      //   });
-      //    next(err)
-      // } else if (userExists) {
-      //   const err = new Error("User already exists");
-      //   err.status = 403,
-      //   err.errors = { username: "User with that username already exists" }
-      //   res.json({
-      //     message: "User already exists",
-      //     statusCode: 403,
-      //     errors: {
-      //       username: "User with that username already exists"
-      //     }
-      //   });
-      //   next(err);
-      // } else {
-        const user = await User.signup({
-          email,
-          password,
-          username,
-          firstName,
-          lastName,
-        });
-        await setTokenCookie(res, user);
-        // const id = req.user.id;
-        res.json({  firstName, lastName, email, username });
-      }
+      const user = await User.signup({
+        email,
+        password,
+        username,
+        firstName,
+        lastName,
+      });
+      await setTokenCookie(res, user);
+      // const id = req.user.id;
+      res.json({  firstName, lastName, email, username });
+    }
     //   } catch (err) {
-    //   next(err)
-    // }
-  
-)
-
-  
-  
-router.get('/', async (req, res) => {
-  let users = [];
-
-  users = await User.findAll();
-  res.json(users);
-  // const pet = await User.findByPk(5)
-  // pet.destroy();
-
-})
-  
-module.exports = router;
-    // const emailExists = await User.findOne({
-    //   attributes: ['email'],
-    //   where: {
-    //     email: email
-    //   }
-    // })
-
-    // const userExists = await User.findOne({
-    //   attributes: ['username'],
-    //   where: {
-    //     username: username
-    //   }
-    // })
-    // if (emailExists) {
-    //   res.status(403);
-    //   res.json({
-    //     "message": "User already exists",
-    //     "statusCode": 403,
-    //     "error": {
-    //       "email": "User with that email already exists"
-    //     }
-    //   })
-    // } else if (userExists) {
+      //   next(err)
+      // }
       
-    //   res.json(userExists);
-    //   next({
-    //     message: "User already exists",
-    //     statusCode: 403,
-    //     errors: {
-    //       username: "User with that username already exists",
-    //     },
-    //   });
-    //   }
-    //  else {
-    //   const user = await User.signup({ email, username, password, firstName, lastName });
-
-    //   await setTokenCookie(res, user);
-    //   const id = req.user.id;
-
-    //   return res.json({
+      )
+      
+      
+      
+      router.get('/', async (req, res) => {
+        let users = [];
         
-    //       id, firstName, lastName, email,username,
+        users = await User.findAll();
+        res.json(users);
+      
         
-    //   });
-    // }
-  // });
+      })
+      
+      module.exports = router;
+      // const emailExists = await User.findOne({
+        //   attributes: ['email'],
+        //   where: {
+          //     email: email
+          //   }
+          // })
+          
+          // const userExists = await User.findOne({
+            //   attributes: ['username'],
+            //   where: {
+              //     username: username
+              //   }
+              // })
+              // if (emailExists) {
+                //   res.status(403);
+                //   res.json({
+                  //     "message": "User already exists",
+                  //     "statusCode": 403,
+                  //     "error": {
+                    //       "email": "User with that email already exists"
+                    //     }
+                    //   })
+                    // } else if (userExists) {
+                      
+                      //   res.json(userExists);
+                      //   next({
+                        //     message: "User already exists",
+                        //     statusCode: 403,
+                        //     errors: {
+                          //       username: "User with that username already exists",
+                          //     },
+                          //   });
+                          //   }
+                          //  else {
+                            //   const user = await User.signup({ email, username, password, firstName, lastName });
+                            
+                            //   await setTokenCookie(res, user);
+                            //   const id = req.user.id;
+                            
+                            //   return res.json({
+                              
+                              //       id, firstName, lastName, email,username,
+                              
+                              //   });
+                              // }
+                              // });
+                              // const emailExists = await User.findAll({
+                              //   attributes: ['email'],
+                              //   where: {
+                              //     email: email
+                              //   }
+                              // })
+                            
+                              // const userExists = await User.findAll({
+                              //   attributes: ['username'],
+                              //   where: {
+                              //     username: username
+                              //   }
+                              // })
+                              // if (emailExists) {
+                              //   const err = new Error("User already exists")
+                              //   err.status = 403,
+                              //     err.errors = { email: "User with that email already exists" }
+                              //   res.json({
+                              //     message: "User already exists",
+                              //     statusCode: 403,
+                              //     errors: {
+                              //       email: "User with that email already exists",
+                              //     },
+                              //   });
+                              //    next(err)
+                              // } else if (userExists) {
+                              //   const err = new Error("User already exists");
+                              //   err.status = 403,
+                              //   err.errors = { username: "User with that username already exists" }
+                              //   res.json({
+                              //     message: "User already exists",
+                              //     statusCode: 403,
+                              //     errors: {
+                              //       username: "User with that username already exists"
+                              //     }
+                              //   });
+                              //   next(err);
+                              // } else {

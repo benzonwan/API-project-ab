@@ -1,7 +1,4 @@
 'use strict';
-
-const { query } = require('express');
-
 let options = {};
 if (process.env.NODE_ENV === "production") {
   options.schema = process.env.SCHEMA; // define your schema in options object
@@ -17,10 +14,10 @@ module.exports = {
      */
    options.tableName = "Spots";
    await queryInterface.addColumn(options, "avgRating", {
-     type: Sequelize.DECIMAL(1,1),
+     type: Sequelize.DECIMAL(1, 1)
   });
    await queryInterface.addColumn(options, "previewImage", {
-     type: Sequelize.STRING,
+     type: Sequelize.STRING
     });
   },
 

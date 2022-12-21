@@ -60,8 +60,24 @@ module.exports = (sequelize, DataTypes) => {
         isDecimal: true
       },
     },
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    createdAt: {
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+    },
+    avgRating: {
+      type: DataTypes.DECIMAL,
+      validate: {
+        len: [1, 5],
+        min: 1,
+        max: 5,
+        isNumeric: true
+      }
+    },
+    previewImage: {
+      type: DataTypes.STRING
+    }
   }, {
     sequelize,
     modelName: 'Spot',
