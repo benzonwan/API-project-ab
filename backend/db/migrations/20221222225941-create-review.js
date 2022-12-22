@@ -1,7 +1,4 @@
 'use strict';
-
-const { all } = require('../../routes/api/spots');
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -31,7 +28,8 @@ module.exports = {
         onDelete: 'CASCADE'
       },
       review: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       stars: {
         type: Sequelize.INTEGER,
