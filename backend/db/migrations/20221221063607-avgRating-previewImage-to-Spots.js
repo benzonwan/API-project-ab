@@ -6,12 +6,7 @@ if (process.env.NODE_ENV === "production") {
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
+  
    options.tableName = "Spots";
    await queryInterface.addColumn(options, "avgRating", {
      type: Sequelize.DECIMAL(1, 1)
