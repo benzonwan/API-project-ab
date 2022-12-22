@@ -1,6 +1,7 @@
 'use strict';
 const { Model, Validator } = require('sequelize');
 const bcrypt = require('bcryptjs');
+const spot = require('./spot');
 
 
 module.exports = (sequelize, DataTypes) => {
@@ -47,6 +48,8 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       // define association here
+      // User.hasMany(models.Spot, { foreignKey: 'spotId' });
+      // User.hasMany(models.Booking, { foreignKey: 'userId' });
     }
   };
 

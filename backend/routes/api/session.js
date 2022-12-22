@@ -17,6 +17,21 @@ const validateLogin = [
       .withMessage('Please provide a password.'),
     handleValidationErrors
   ];
+  
+  // Restore session user
+  router.get(
+      '/',
+      restoreUser,
+      (req, res) => {
+        const { user } = req;
+        if (user) {
+          return res.json({
+            user: user.toSafeObject(),
+     
+          });
+        } else return res.json({ user: null });
+      }
+    );
 // Log in
 router.post(
     '/',
@@ -31,6 +46,20 @@ router.post(
         err.status = 401;
         err.title = 'Login failed';
         err.errors = ['The provided credentials were invalid.'];
+        return next(err);
+      }
+      if(!credential.length){
+        const err = new Error('Validation error');
+        err.status = 400;
+        err.title = 'Login failed';
+        err.errors = ['Email or username is required'];
+        return next(err);
+      }
+      if(!password.length){
+        const err = new Error('Validation error');
+        err.status = 400;
+        err.title = 'Login failed';
+        err.errors =['Password is required'];
         return next(err);
       }
    
@@ -52,20 +81,5 @@ router.delete(
     }
 );
   
-
-// Restore session user
-router.get(
-    '/',
-    restoreUser,
-    (req, res) => {
-      const { user } = req;
-      if (user) {
-        return res.json({
-          user: user.toSafeObject(),
-   
-        });
-      } else return res.json({ user: null });
-    }
-  );
 
 module.exports = router;

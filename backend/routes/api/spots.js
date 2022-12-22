@@ -8,6 +8,18 @@ const { Spot } = require("../../db/models");
 
 const router = express.Router();
 
+router.get('/current', requireAuth, async (req, res) => {
+    const currSpots = await Spot.findAll({
+        where: { ownerId: req.user.id }
+
+    });
+    res.json(currSpots);
+})
+
+router.get('/:spotId', async (req, res) => {
+    
+})
+
 router.get('/', async (req, res) => {
     let spots = [];
     spots = await Spot.findAll();
