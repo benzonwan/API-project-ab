@@ -58,6 +58,12 @@ module.exports = {
       previewImage: {
         type: Sequelize.STRING
       },
+      avgRating: {
+        type: Sequelize.INTEGER,
+      },
+      previewImage: {
+        type:Sequelize.BOOLEAN
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
