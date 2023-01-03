@@ -50,6 +50,12 @@ module.exports = {
         type: Sequelize.DECIMAL(4, 2),
         allowNull: false
       },
+      avgRating: {
+        type: Sequelize.INTEGER,
+      },
+      previewImage: {
+        type:Sequelize.BOOLEAN
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
