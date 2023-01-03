@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -13,10 +13,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Users',
-          key: 'id'
+          model: "Spots",
         },
-        onDelete: 'CASCADE'
+        onDelete: "CASCADE",
       },
       address: {
         type: Sequelize.STRING,
@@ -37,7 +36,7 @@ module.exports = {
       },
       lat: {
         type: Sequelize.DECIMAL(3, 7),
-        allowNull: false
+        allowNull: false,
       },
       lng: {
         type: Sequelize.DECIMAL(3, 7),
@@ -49,9 +48,16 @@ module.exports = {
       description: {
         type: Sequelize.STRING,
       },
+      
       price: {
         type: Sequelize.DECIMAL(4, 2),
-        allowNull: false
+        allowNull: false,
+      },
+      avgRating: {
+        type:Sequelize.INTEGER,
+      },
+      previewImage: {
+        type:Sequelize.STRING
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -61,11 +67,11 @@ module.exports = {
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Spots');
-  }
+    await queryInterface.dropTable("Spots");
+  },
 };
